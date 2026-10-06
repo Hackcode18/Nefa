@@ -1,8 +1,6 @@
 # AI Prompt Injection Attack Detection and Defense for Large Language Models
 
 **Batch:** 2023-27 | **Dept:** Information Technology, 7th Sem, Section 2
-**Team:** Shikaram Ruthika (B23IT076), Thanusree (B23IT075), Neha (B23IT126), Anji (B23IT116)
-**Supervisor:** N. Srinivas | **Coordinator:** S. Sathish Kumar | **HOD:** Senthil Murugan
 
 ## Abstract
 
