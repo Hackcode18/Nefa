@@ -1,0 +1,15 @@
+# AI Prompt Injection Attack Detection and Defense for Large Language Models
+
+**Batch:** 2023-27 | **Dept:** Information Technology, 7th Sem, Section 2
+**Team:** Shikaram Ruthika (B23IT076), Thanusree (B23IT075), Neha (B23IT126), Anji (B23IT116)
+**Supervisor:** N. Srinivas | **Coordinator:** S. Sathish Kumar | **HOD:** Senthil Murugan
+
+## Abstract
+
+Large Language Models (LLMs) such as GPT, Claude and Gemini process developer instructions and untrusted external data within the same natural-language context. This design makes them vulnerable to prompt injection, where an attacker embeds malicious instructions in user input (direct injection) or in documents, web pages and retrieval-augmented generation (RAG) content (indirect injection) to override the intended behaviour of the model. Existing defenses are largely reactive and single-layered. Keyword filters are bypassed by paraphrasing and obfuscation, and input-only protection ignores indirect injection routes. There is also no standard way to evaluate both detection accuracy and operational impact.
+
+This project proposes and implements a layered, hybrid framework for real-time detection and mitigation of prompt injection. Input first passes through a sanitizer and rule-based filter that normalises unicode tricks, decodes Base64/ROT13 payloads and matches known attack patterns. A TF-IDF with Logistic Regression classifier then learns lexical patterns from labelled data, and a semantic layer (a character n-gram model in the reference build, replaceable by a fine-tuned DistilBERT transformer) handles paraphrased and obfuscated attacks. A risk-scoring engine fuses the three layers into a 0-100 score and classifies each prompt as Benign, Direct, Indirect, Obfuscated or Suspicious. High-risk prompts are blocked with an alert, medium-risk prompts are sent for review, and low-risk prompts are passed to the LLM. Each decision includes an explanation (instruction override, role manipulation, system-prompt extraction, data exfiltration, hidden indirect markers). A RAG/document scanner inspects external content chunk by chunk and strips malicious segments before they reach the model. An adaptive-defense module retrains the models on newly confirmed attacks, and a security dashboard reports totals, attack categories, risk distribution, latency and false-positive rate.
+
+The framework is evaluated using Accuracy, Precision, Recall, F1-score, Attack Success Rate, False Positive Rate and detection latency, including tests on unseen, paraphrased and obfuscated attacks to measure generalisation. The prototype achieves millisecond-level latency per prompt, showing that multi-layer defense is practical for real-time chatbots, RAG document Q&A systems, LLM agents and customer-support tools. The work contributes a practical, explainable and extensible defense pipeline and an evaluation approach that weighs security effectiveness against usability.
+
+**Keywords:** Prompt Injection, Large Language Models, AI Security, Hybrid Detection, DistilBERT, RAG Security, Risk Scoring, Explainable Detection
